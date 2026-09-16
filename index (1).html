@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameKey Store</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Thai",sans-serif;background:#f3f4f6;color:#111827}
+    header{background:#111827;color:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+    header h1{margin:0;font-size:22px}header span{color:#818cf8}
+    nav button,.btn{border:0;border-radius:10px;padding:10px 15px;cursor:pointer;font-weight:700}
+    nav button{background:transparent;color:#fff}.btn-primary{background:#4f46e5;color:#fff}.btn-danger{background:#dc2626;color:#fff}.btn-success{background:#16a34a;color:#fff}.btn-light{background:#fff;color:#111827}
+    .container{width:min(1150px,92%);margin:auto}.hero{padding:75px 0;background:linear-gradient(135deg,#111827,#4f46e5);color:#fff}
+    .hero h2{font-size:clamp(30px,6vw,60px);line-height:1.1;margin:0 0 18px}.hero p{max-width:650px;color:#e5e7eb;font-size:18px}
+    section{padding:45px 0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 8px 25px #0000000d}
+    .product{padding:0;overflow:hidden}.product-image{height:170px;background:linear-gradient(135deg,#312e81,#6366f1);display:flex;align-items:center;justify-content:center;font-size:60px;color:#fff}
+    .product-body{padding:18px}.muted{color:#6b7280}.price{font-weight:800;color:#4f46e5;font-size:20px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .toolbar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}.input,.select,.textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;background:#fff}.search{flex:1;min-width:220px}.category{width:220px}
+    .hidden{display:none!important}.cart-item{display:flex;align-items:center;gap:15px;padding:15px 0;border-bottom:1px solid #e5e7eb}.cart-item:last-child{border-bottom:0}.cart-icon{font-size:35px}
+    .cart-info{flex:1}.quantity{display:flex;align-items:center;gap:8px}.quantity button{border:1px solid #ddd;background:#fff;border-radius:7px;width:30px;height:30px}
+    .layout{display:grid;grid-template-columns:1.5fr 1fr;gap:22px}.form-group{margin-bottom:15px}.form-group label{display:block;font-weight:700;margin-bottom:6px}
+    .payment{display:block;border:1px solid #ddd;padding:12px;border-radius:10px;margin:8px 0}.notice{background:#eff6ff;color:#1e40af;padding:14px;border-radius:10px;margin:15px 0}
+    table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:12px;border-bottom:1px solid #e5e7eb;text-align:left}th{background:#f9fafb}.table-wrap{overflow:auto}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat{background:#fff;border-radius:15px;padding:20px;border:1px solid #e5e7eb}.stat small{color:#6b7280}.stat strong{display:block;font-size:27px;margin-top:8px}
+    footer{background:#111827;color:#d1d5db;padding:30px 0;margin-top:30px}.toast{position:fixed;right:20px;bottom:20px;background:#111827;color:#fff;padding:15px 20px;border-radius:10px}
+    @media(max-width:950px){.grid{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.grid,.layout{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.hero{padding:50px 0}}
+    @media(max-width:480px){.grid,.stats{grid-template-columns:1fr}.cart-item{flex-wrap:wrap}.category{width:100%}}
+  </style>
+</head>
+<body>
+<header>
+  <h1>🎮 Game<span>Key</span> Store</h1>
+  <nav>
+    <button onclick="page('home')">หน้าหลัก</button>
+    <button onclick="page('products')">สินค้า</button>
+    <button onclick="page('orders')">ออเดอร์</button>
+    <button onclick="page('admin')">หลังบ้าน</button>
+    <button onclick="page('cart')">🛒 ตะกร้า (<b id="cartCount">0</b>)</button>
+  </nav>
+</header>
+
+<main>
+<section id="home">
+  <div class="hero"><div class="container">
+    <h2>ซื้อรหัสเกมออนไลน์<br>ง่าย รวดเร็ว ปลอดภัย</h2>
+    <p>ร้านขายรหัสเกมออนไลน์ รองรับการสั่งซื้อและตรวจสอบคำสั่งซื้อในหน้าเดียว</p>
+    <button class="btn btn-light" onclick="page('products')">เลือกซื้อสินค้า</button>
+  </div></div>
+  <div class="container"><section>
+    <div class="grid">
+      <div class="card"><h3>⚡ ส่งไว</h3><p class="muted">ตรวจสอบรายการได้รวดเร็ว</p></div>
+      <div class="card"><h3>🔒 ปลอดภัย</h3><p class="muted">มีระบบตรวจสอบคำสั่งซื้อ</p></div>
+      <div class="card"><h3>💳 ชำระง่าย</h3><p class="muted">รองรับโอนเงินและเงินสด</p></div>
+      <div class="card"><h3>🎧 ดูแลหลังการขาย</h3><p class="muted">มีช่องทางติดต่อร้าน</p></div>
+    </div>
+  </section></div>
+</section>
+
+<section id="products" class="hidden"><div class="container">
+  <h2>สินค้าทั้งหมด</h2>
+  <div class="toolbar">
+    <input id="search" class="input search" placeholder="ค้นหาสินค้า..." oninput="renderProducts()">
+    <select id="category" class="select category" onchange="renderProducts()"><option value="">ทุกหมวดหมู่</option></select>
+  </div>
+  <div id="productGrid" class="grid"></div>
+</div></section>
+
+<section id="cart" class="hidden"><div class="container">
+  <h2>ตะกร้าสินค้า</h2>
+  <div class="layout">
+    <div class="card" id="cartItems"></div>
+    <div class="card">
+      <h3>สรุปคำสั่งซื้อ</h3>
+      <div class="row"><span>จำนวน</span><b id="cartQty">0 ชิ้น</b></div>
+      <div class="row"><span>ยอดรวม</span><b id="cartTotal">฿0.00</b></div>
+      <button class="btn btn-primary" style="width:100%;margin-top:20px" onclick="checkout()">ดำเนินการสั่งซื้อ</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="checkout" class="hidden"><div class="container">
+  <h2>ยืนยันคำสั่งซื้อ</h2>
+  <div class="layout">
+    <div class="card">
+      <form onsubmit="submitOrder(event)">
+        <div class="form-group"><label>ชื่อผู้สั่งซื้อ *</label><input id="customerName" class="input" required></div>
+        <div class="form-group"><label>อีเมล *</label><input id="customerEmail" type="email" class="input" required></div>
+        <div class="form-group"><label>เบอร์โทรศัพท์</label><input id="customerPhone" class="input"></div>
+        <div class="form-group"><label>วิธีชำระเงิน</label>
+          <label class="payment"><input type="radio" name="payment" value="transfer" checked> โอนเงิน</label>
+          <label class="payment"><input type="radio" name="payment" value="cash"> เงินสด</label>
+        </div>
+        <div class="notice">ธนาคารตัวอย่าง: ธนาคารตัวอย่าง<br>ชื่อบัญชี: GameKey Store<br>เลขบัญชี: 000-0-00000-0</div>
+        <div class="form-group"><label>หมายเหตุ</label><textarea id="note" class="textarea" rows="4"></textarea></div>
+        <div class="form-group"><label>แนบสลิป</label><input id="slip" type="file" class="input" accept="image/*"></div>
+        <button class="btn btn-primary" style="width:100%">ยืนยันคำสั่งซื้อ</button>
+      </form>
+    </div>
+    <div class="card"><h3>รายการสินค้า</h3><div id="checkoutItems"></div><hr><div class="row"><b>รวม</b><b id="checkoutTotal">฿0.00</b></div></div>
+  </div>
+</div></section>
+
+<section id="orders" class="hidden"><div class="container">
+  <h2>ตรวจสอบคำสั่งซื้อ</h2>
+  <div class="card">
+    <form onsubmit="lookup(event)">
+      <div class="form-group"><label>เลขคำสั่งซื้อ</label><input id="lookupId" class="input" required></div>
+      <div class="form-group"><label>อีเมล</label><input id="lookupEmail" type="email" class="input" required></div>
+      <button class="btn btn-primary">ตรวจสอบ</button>
+    </form>
+  </div>
+  <div id="orderResult"></div>
+</div></section>
+
+<section id="admin" class="hidden"><div class="container">
+  <h2>ระบบหลังบ้าน</h2>
+  <div id="adminLogin" class="card">
+    <p class="notice">รหัสผ่านเริ่มต้นคือ <b>admin123</b> กรุณาเปลี่ยนก่อนใช้งานจริง</p>
+    <form onsubmit="loginAdmin(event)"><input id="adminPass" type="password" class="input" placeholder="รหัสผ่าน" required><br><br><button class="btn btn-primary">เข้าสู่ระบบ</button></form>
+  </div>
+  <div id="adminPanel" class="hidden">
+    <div class="stats">
+      <div class="stat"><small>สินค้า</small><strong id="statProducts">0</strong></div>
+      <div class="stat"><small>ออเดอร์</small><strong id="statOrders">0</strong></div>
+      <div class="stat"><small>รอตรวจสอบ</small><strong id="statPending">0</strong></div>
+      <div class="stat"><small>ยอดขาย</small><strong id="statRevenue">฿0</strong></div>
+    </div>
+    <br>
+    <div class="card">
+      <h3>เพิ่มสินค้า</h3>
+      <form onsubmit="addProduct(event)">
+        <div class="layout">
+          <input id="newName" class="input" placeholder="ชื่อสินค้า" required>
+          <input id="newCategory" class="input" placeholder="หมวดหมู่" required>
+          <input id="newPrice" class="input" type="number" placeholder="ราคา" required>
+          <input id="newStock" class="input" type="number" placeholder="สต็อก" required>
+        </div><br>
+        <input id="newImage" class="input" placeholder="ลิงก์รูปภาพ"><br><br>
+        <textarea id="newDescription" class="textarea" placeholder="รายละเอียด"></textarea><br><br>
+        <button class="btn btn-success">เพิ่มสินค้า</button>
+      </form>
+    </div>
+    <br>
+    <div class="card"><h3>สินค้า</h3><div class="table-wrap"><table><thead><tr><th>ชื่อ</th><th>หมวดหมู่</th><th>ราคา</th><th>สต็อก</th><th>จัดการ</th></tr></thead><tbody id="adminProducts"></tbody></table></div></div>
+    <br>
+    <div class="card"><h3>คำสั่งซื้อ</h3><div class="table-wrap"><table><thead><tr><th>เลขออเดอร์</th><th>ลูกค้า</th><th>ยอดรวม</th><th>สถานะ</th><th>เปลี่ยนสถานะ</th></tr></thead><tbody id="adminOrders"></tbody></table></div></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="container">© 2026 GameKey Store — เว็บไซต์ตัวอย่างสำหรับนำไปพัฒนาต่อ</div></footer>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const defaultProducts=[
+{id:"p1",name:"Steam Wallet Code 100 THB",category:"Steam",price:100,stock:25,icon:"🎮",description:"เติมเงิน Steam Wallet มูลค่า 100 บาท"},
+{id:"p2",name:"Steam Wallet Code 300 THB",category:"Steam",price:300,stock:20,icon:"🎮",description:"เติมเงิน Steam Wallet มูลค่า 300 บาท"},
+{id:"p3",name:"Garena Shell 100 Shell",category:"Garena",price:95,stock:30,icon:"🔥",description:"เติม Garena Shell"},
+{id:"p4",name:"Roblox Gift Card",category:"Roblox",price:250,stock:15,icon:"🧱",description:"บัตรเติมเงิน Roblox"},
+{id:"p5",name:"Valorant Points 475 VP",category:"Valorant",price:180,stock:18,icon:"🎯",description:"เติม Valorant Points"}
+];
+let products=load("products",defaultProducts),cart=load("cart",[]),orders=load("orders",[]),admin=false;
+function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function money(n){return new Intl.NumberFormat("th-TH",{style:"currency",currency:"THB"}).format(n)}
+function esc(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
+function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.remove("hidden");setTimeout(()=>x.classList.add("hidden"),2500)}
+function page(id){document.querySelectorAll("main>section").forEach(x=>x.classList.add("hidden"));document.getElementById(id).classList.remove("hidden");if(id==="products")renderProducts();if(id==="cart")renderCart();if(id==="checkout")renderCheckout();if(id==="admin")renderAdmin();scrollTo(0,0)}
+function product(id){return products.find(x=>x.id===id)}
+function total(){return cart.reduce((s,x)=>s+(product(x.id)?.price||0)*x.qty,0)}
+function updateCount(){document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0)}
+function addCart(id){let p=product(id),x=cart.find(i=>i.id===id);if(!p||p.stock<1)return toast("สินค้าหมด");if(x){if(x.qty>=p.stock)return toast("เกินสต็อก");x.qty++}else cart.push({id,qty:1});save("cart",cart);updateCount();toast("เพิ่มสินค้าลงตะกร้าแล้ว")}
+function renderProducts(){let q=(document.getElementById("search")?.value||"").toLowerCase(),c=document.getElementById("category")?.value||"",sel=document.getElementById("category"),cats=[...new Set(products.map(x=>x.category))];sel.innerHTML='<option value="">ทุกหมวดหมู่</option>'+cats.map(x=>`<option>${esc(x)}</option>`).join("");sel.value=c;let list=products.filter(x=>(x.name+x.category+x.description).toLowerCase().includes(q)&&(!c||x.category===c));document.getElementById("productGrid").innerHTML=list.map(p=>`<div class="card product"><div class="product-image">${p.image?`<img src="${esc(p.image)}" style="width:100%;height:100%;object-fit:cover">`:p.icon||"🎮"}</div><div class="product-body"><small class="muted">${esc(p.category)}</small><h3>${esc(p.name)}</h3><p class="muted">${esc(p.description)}</p><div class="row"><span class="price">${money(p.price)}</span><button class="btn btn-primary" onclick="addCart('${p.id}')" ${p.stock<1?"disabled":""}>เพิ่ม</button></div><small class="muted">สต็อก ${p.stock}</small></div></div>`).join("")||"<p>ไม่พบสินค้า</p>"}
+function renderCart(){let box=document.getElementById("cartItems");document.getElementById("cartQty").textContent=cart.reduce((s,x)=>s+x.qty,0)+" ชิ้น";document.getElementById("cartTotal").textContent=money(total());if(!cart.length){box.innerHTML="<p>ยังไม่มีสินค้าในตะกร้า</p>";return}box.innerHTML=cart.map(x=>{let p=product(x.id);return `<div class="cart-item"><div class="cart-icon">${p.icon||"🎮"}</div><div class="cart-info"><b>${esc(p.name)}</b><div class="muted">${money(p.price)}</div></div><div class="quantity"><button onclick="qty('${p.id}',-1)">−</button><span>${x.qty}</span><button onclick="qty('${p.id}',1)">+</button><button class="btn btn-danger" onclick="removeCart('${p.id}')">ลบ</button></div></div>`}).join("")}
+function qty(id,n){let x=cart.find(i=>i.id===id),p=product(id);if(!x)return;x.qty+=n;if(x.qty<=0)cart=cart.filter(i=>i.id!==id);if(p&&x.qty>p.stock)x.qty=p.stock;save("cart",cart);renderCart();updateCount()}
+function removeCart(id){cart=cart.filter(x=>x.id!==id);save("cart",cart);renderCart();updateCount()}
+function checkout(){if(!cart.length)return toast("กรุณาเพิ่มสินค้าก่อน");page("checkout")}
+function renderCheckout(){document.getElementById("checkoutTotal").textContent=money(total());document.getElementById("checkoutItems").innerHTML=cart.map(x=>{let p=product(x.id);return `<div class="row"><span>${esc(p.name)} x${x.qty}</span><b>${money(p.price*x.qty)}</b></div>`}).join("")}
+function submitOrder(e){e.preventDefault();for(let x of cart){if(product(x.id).stock<x.qty)return toast("สต็อกไม่เพียงพอ")}let o={id:"GK-"+Date.now(),createdAt:new Date().toISOString(),name:document.getElementById("customerName").value,email:document.getElementById("customerEmail").value,phone:document.getElementById("customerPhone").value,note:document.getElementById("note").value,payment:document.querySelector('input[name="payment"]:checked').value,slip:document.getElementById("slip").files[0]?.name||"",status:"pending",items:cart.map(x=>({id:x.id,qty:x.qty,name:product(x.id).name,price:product(x.id).price})),total:total()};orders.unshift(o);cart.forEach(x=>product(x.id).stock-=x.qty);save("orders",orders);save("products",products);cart=[];save("cart",cart);updateCount();alert("สั่งซื้อสำเร็จ เลขออเดอร์: "+o.id);document.getElementById("lookupId").value=o.id;document.getElementById("lookupEmail").value=o.email;page("orders")}
+function lookup(e){e.preventDefault();let id=document.getElementById("lookupId").value,email=document.getElementById("lookupEmail").value,o=orders.find(x=>x.id.toLowerCase()===id.toLowerCase()&&x.email.toLowerCase()===email.toLowerCase());document.getElementById("orderResult").innerHTML=o?`<div class="card" style="margin-top:20px"><h3>คำสั่งซื้อ ${esc(o.id)}</h3><p>สถานะ: <b>${o.status}</b></p><p>ยอดรวม: <b>${money(o.total)}</b></p><p>วันที่: ${new Date(o.createdAt).toLocaleString("th-TH")}</p>${o.items.map(x=>`<div class="row"><span>${esc(x.name)} x${x.qty}</span><b>${money(x.price*x.qty)}</b></div>`).join("")}</div>`:"<div class='notice' style='margin-top:20px'>ไม่พบคำสั่งซื้อ</div>"}
+function loginAdmin(e){e.preventDefault();if(document.getElementById("adminPass").value!=="admin123")return toast("รหัสผ่านไม่ถูกต้อง");admin=true;document.getElementById("adminLogin").classList.add("hidden");document.getElementById("adminPanel").classList.remove("hidden");renderAdmin()}
+function renderAdmin(){if(!admin)return;document.getElementById("statProducts").textContent=products.length;document.getElementById("statOrders").textContent=orders.length;document.getElementById("statPending").textContent=orders.filter(x=>x.status==="pending").length;document.getElementById("statRevenue").textContent=money(orders.filter(x=>x.status!=="cancelled").reduce((s,x)=>s+x.total,0));document.getElementById("adminProducts").innerHTML=products.map(p=>`<tr><td>${esc(p.name)}</td><td>${esc(p.category)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td><button class="btn btn-danger" onclick="deleteProduct('${p.id}')">ลบ</button></td></tr>`).join("");document.getElementById("adminOrders").innerHTML=orders.map(o=>`<tr><td>${esc(o.id)}</td><td>${esc(o.name)}<br>${esc(o.email)}</td><td>${money(o.total)}</td><td>${o.status}</td><td><select class="select" onchange="status('${o.id}',this.value)"><option ${o.status==="pending"?"selected":""}>pending</option><option ${o.status==="paid"?"selected":""}>paid</option><option ${o.status==="completed"?"selected":""}>completed</option><option ${o.status==="cancelled"?"selected":""}>cancelled</option></select></td></tr>`).join("")}
+function addProduct(e){e.preventDefault();products.push({id:"p-"+Date.now(),name:document.getElementById("newName").value,category:document.getElementById("newCategory").value,price:+document.getElementById("newPrice").value,stock:+document.getElementById("newStock").value,image:document.getElementById("newImage").value,icon:"🎮",description:document.getElementById("newDescription").value});save("products",products);e.target.reset();renderAdmin();renderProducts();toast("เพิ่มสินค้าแล้ว")}
+function deleteProduct(id){if(!confirm("ลบสินค้านี้หรือไม่"))return;products=products.filter(x=>x.id!==id);save("products",products);renderAdmin();renderProducts()}
+function status(id,s){let o=orders.find(x=>x.id===id);if(o){o.status=s;save("orders",orders);renderAdmin()}}
+updateCount();renderProducts();
+</script>
+</body>
+</html>
